@@ -152,6 +152,7 @@ async function fetchData(bodyJson) {
     body: JSON.stringify(bodyJson)
   })
     .then((response) => response.json())
+
     .catch((err) => {
       return Promise.reject();
     });
@@ -159,47 +160,51 @@ async function fetchData(bodyJson) {
 }
 
 async function makeChart(data, data2) {
-  const tiedot = Object.values(data.dimension.Tiedot.category.label);
-  const vuosi = Object.values(data.dimension.Vuosi.category.label);
-  const values = data.value;
+  if (!data) {
+  } else if (!data2) {
+  } else {
+    const tiedot = Object.values(data.dimension.Tiedot.category.label);
+    const vuosi = Object.values(data.dimension.Vuosi.category.label);
+    const values = data.value;
 
-  const tiedot2 = Object.values(data2.dimension.Tiedot.category.label);
-  const values2 = data2.value;
+    const tiedot2 = Object.values(data2.dimension.Tiedot.category.label);
+    const values2 = data2.value;
 
-  let test = [];
-  let test2 = [];
+    let test = [];
+    let test2 = [];
 
-  await values.forEach((value, index) => {
-    test.push(value);
-  });
+    await values.forEach((value, index) => {
+      test.push(value);
+    });
 
-  await values2.forEach((value, index) => {
-    test2.push(value);
-  });
+    await values2.forEach((value, index) => {
+      test2.push(value);
+    });
 
-  tiedot[0] = {
-    name: tiedot[0],
-    values: test
-  };
-  tiedot.push({
-    name: tiedot2[0],
-    values: test2
-  });
+    tiedot[0] = {
+      name: tiedot[0],
+      values: test
+    };
+    tiedot.push({
+      name: tiedot2[0],
+      values: test2
+    });
 
-  const chartData = {
-    labels: vuosi,
-    datasets: tiedot
-  };
-  //console.log(tiedot);
+    const chartData = {
+      labels: vuosi,
+      datasets: tiedot
+    };
+    //console.log(tiedot);
 
-  const chart = new Chart("#chart", {
-    title: "Data chart",
-    data: chartData,
-    type: "bar",
-    height: 450,
-    colors: ["#63d0ff", "#363636"]
-  });
-  //console.log(JSON.stringify(chart));
+    const chart = new Chart("#chart", {
+      title: "Data chart",
+      data: chartData,
+      type: "bar",
+      height: 450,
+      colors: ["#63d0ff", "#363636"]
+    });
+    //console.log(JSON.stringify(chart));
+  }
 }
 
 async function start() {
@@ -209,6 +214,9 @@ async function start() {
   query2.query[2].selection.values = ["vm01"];
   let data = await fetchData(jsonQ);
   let data1 = await fetchData(jsonQ2);
+  console.log(data);
+  console.log(data1);
+
   makeChart(data1, data);
 }
 
