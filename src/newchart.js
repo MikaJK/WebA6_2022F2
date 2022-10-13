@@ -111,10 +111,20 @@ async function makeChart(data, data2) {
   const vuosi = Object.values(data.dimension.Vuosi.category.label);
   const values = data.value;
 
+  const tiedot2 = Object.values(data.dimension.Tiedot.category.label);
+  const vuosi2 = Object.values(data.dimension.Vuosi.category.label);
+  const values2 = data.value;
+  /*
   const tiedot2 = Object.values(data2.dimension.Tiedot.category.label);
   const vuosi2 = Object.values(data2.dimension.Vuosi.category.label);
   const values2 = data2.value;
 
+
+
+  const tiedot = Object.values(data2.dimension.Tiedot.category.label);
+  const vuosi = Object.values(data2.dimension.Vuosi.category.label);
+  const values = data2.value;
+*/
   let test = [];
   let test2 = [];
 
