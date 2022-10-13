@@ -204,11 +204,12 @@ async function makeChart(data, data2) {
 
 async function start() {
   jsonQ.query[1].selection.values = [localStorage["areacode"]];
+  jsonQ2.query[1].selection.values = [localStorage["areacode"]];
   let query2 = JSON.parse(JSON.stringify(jsonQ));
   query2.query[2].selection.values = ["vm01"];
   let data = await fetchData(jsonQ);
   let data1 = await fetchData(jsonQ2);
-  makeChart(data, data1);
+  makeChart(data1, data);
 }
 
 start();
