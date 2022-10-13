@@ -95,7 +95,7 @@ const jsonQ2 = {
       code: "Tiedot",
       selection: {
         filter: "item",
-        values: ["vm11"]
+        values: ["vm01"]
       }
     }
   ],
