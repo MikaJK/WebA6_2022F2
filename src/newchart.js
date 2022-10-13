@@ -52,6 +52,58 @@ const jsonQ = {
   }
 };
 
+const jsonQ2 = {
+  query: [
+    {
+      code: "Vuosi",
+      selection: {
+        filter: "item",
+        values: [
+          "2000",
+          "2001",
+          "2002",
+          "2003",
+          "2004",
+          "2005",
+          "2006",
+          "2007",
+          "2008",
+          "2009",
+          "2010",
+          "2011",
+          "2012",
+          "2013",
+          "2014",
+          "2015",
+          "2016",
+          "2017",
+          "2018",
+          "2019",
+          "2020",
+          "2021"
+        ]
+      }
+    },
+    {
+      code: "Alue",
+      selection: {
+        filter: "item",
+        values: ["SSS"]
+      }
+    },
+    {
+      code: "Tiedot",
+      selection: {
+        filter: "item",
+        values: ["vm11"]
+      }
+    }
+  ],
+  response: {
+    format: "json-stat2"
+  }
+};
+
 let leavingArray;
 let comingArray;
 
@@ -112,10 +164,8 @@ async function makeChart(data, data2) {
   const values = data.value;
 
   const tiedot2 = Object.values(data2.dimension.Tiedot.category.label);
-  const vuosi2 = Object.values(data2.dimension.Vuosi.category.label);
   const values2 = data2.value;
 
-  
   let test = [];
   let test2 = [];
 
@@ -157,8 +207,8 @@ async function start() {
   let query2 = JSON.parse(JSON.stringify(jsonQ));
   query2.query[2].selection.values = ["vm01"];
   let data = await fetchData(jsonQ);
-  let data1 = await fetchData(query2);
-  makeChart(data1, data1);
+  let data1 = await fetchData(jsonQ2);
+  makeChart(data1, data);
 }
 
 start();
