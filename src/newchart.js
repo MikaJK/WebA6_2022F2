@@ -100,8 +100,8 @@ async function fetchData(bodyJson) {
     body: JSON.stringify(bodyJson)
   })
     .then((response) => response.json())
-    .catch((error) => {
-      console.log(error);
+    .catch((err) => {
+      return Promise.reject();
     });
   return data;
 }
