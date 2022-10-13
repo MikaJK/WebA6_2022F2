@@ -158,7 +158,7 @@ async function start() {
   query2.query[2].selection.values = ["vm01"];
   let data = await fetchData(jsonQ);
   let data1 = await fetchData(query2);
-  makeChart(data, data);
+  makeChart(data1, data1);
 }
 
 start();
